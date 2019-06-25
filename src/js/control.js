@@ -34,6 +34,10 @@ var control = (function() {
     element: helper.e(".control-layout-width"),
     path: "layout.width",
     type: "range",
+    func: function() {
+      render();
+      layout.render.width();
+    },
     additionalEvents: [{
       event: "input",
       func: function() {
@@ -72,104 +76,67 @@ var control = (function() {
       func: function() {
         edge.destroy();
       }
-    }],
-    func: function() {
-      render();
-      layout.render.width();
-    }
+    }]
   }, {
-    element: helper.e(".control-layout-alignment-horizontal-left"),
-    path: "layout.alignment.horizontal",
+    element: helper.e(".control-layout-alignment-topleft"),
+    path: "layout.alignment",
     type: "radio",
-    additionalEvents: [{
-      event: "change",
-      func: function() {
-        edge.render({
-          element: helper.e(".main"),
-          delay: 500
-        });
-      }
-    }],
     func: function() {
       render();
     }
   }, {
-    element: helper.e(".control-layout-alignment-horizontal-center"),
-    path: "layout.alignment.horizontal",
+    element: helper.e(".control-layout-alignment-topcenter"),
+    path: "layout.alignment",
     type: "radio",
-    additionalEvents: [{
-      event: "change",
-      func: function() {
-        edge.render({
-          element: helper.e(".main"),
-          delay: 500
-        });
-      }
-    }],
     func: function() {
       render();
     }
   }, {
-    element: helper.e(".control-layout-alignment-horizontal-right"),
-    path: "layout.alignment.horizontal",
+    element: helper.e(".control-layout-alignment-topright"),
+    path: "layout.alignment",
     type: "radio",
-    additionalEvents: [{
-      event: "change",
-      func: function() {
-        edge.render({
-          element: helper.e(".main"),
-          delay: 500
-        });
-      }
-    }],
     func: function() {
       render();
     }
   }, {
-    element: helper.e(".control-layout-alignment-vertical-top"),
-    path: "layout.alignment.vertical",
+    element: helper.e(".control-layout-alignment-centerleft"),
+    path: "layout.alignment",
     type: "radio",
-    additionalEvents: [{
-      event: "change",
-      func: function() {
-        edge.render({
-          element: helper.e(".main"),
-          delay: 500
-        });
-      }
-    }],
     func: function() {
       render();
     }
   }, {
-    element: helper.e(".control-layout-alignment-vertical-center"),
-    path: "layout.alignment.vertical",
+    element: helper.e(".control-layout-alignment-centercenter"),
+    path: "layout.alignment",
     type: "radio",
-    additionalEvents: [{
-      event: "change",
-      func: function() {
-        edge.render({
-          element: helper.e(".main"),
-          delay: 500
-        });
-      }
-    }],
     func: function() {
       render();
     }
   }, {
-    element: helper.e(".control-layout-alignment-vertical-bottom"),
-    path: "layout.alignment.vertical",
+    element: helper.e(".control-layout-alignment-centerright"),
+    path: "layout.alignment",
     type: "radio",
-    additionalEvents: [{
-      event: "change",
-      func: function() {
-        edge.render({
-          element: helper.e(".main"),
-          delay: 500
-        });
-      }
-    }],
+    func: function() {
+      render();
+    }
+  }, {
+    element: helper.e(".control-layout-alignment-bottomleft"),
+    path: "layout.alignment",
+    type: "radio",
+    func: function() {
+      render();
+    }
+  }, {
+    element: helper.e(".control-layout-alignment-bottomcenter"),
+    path: "layout.alignment",
+    type: "radio",
+    func: function() {
+      render();
+    }
+  }, {
+    element: helper.e(".control-layout-alignment-bottomright"),
+    path: "layout.alignment",
+    type: "radio",
     func: function() {
       render();
     }
@@ -177,6 +144,9 @@ var control = (function() {
     element: helper.e(".control-layout-padding"),
     path: "layout.padding",
     type: "range",
+    func: function() {
+      layout.render.padding();
+    },
     additionalEvents: [{
       event: "input",
       func: function() {
@@ -215,14 +185,14 @@ var control = (function() {
       func: function() {
         edge.destroy();
       }
-    }],
-    func: function() {
-      layout.render.padding();
-    }
+    }]
   }, {
     element: helper.e(".control-layout-gutter"),
     path: "layout.gutter",
     type: "range",
+    func: function() {
+      layout.render.gutter();
+    },
     additionalEvents: [{
       event: "input",
       func: function() {
@@ -261,10 +231,7 @@ var control = (function() {
       func: function() {
         edge.destroy();
       }
-    }],
-    func: function() {
-      layout.render.gutter();
-    }
+    }]
   }, {
     element: helper.e(".control-layout-title"),
     path: "layout.title",
@@ -283,6 +250,9 @@ var control = (function() {
     element: helper.e(".control-header-area-width"),
     path: "header.area.width",
     type: "range",
+    func: function() {
+      header.render.area.width();
+    },
     additionalEvents: [{
       event: "input",
       func: function() {
@@ -321,13 +291,18 @@ var control = (function() {
       func: function() {
         edge.destroy();
       }
-    }],
-    func: function() {
-      header.render.area.width();
-    }
+    }]
   }, {
     element: helper.e(".control-header-area-width-match"),
     type: "button",
+    func: function() {
+      _setValue("header.area.width", helper.getObject({
+        object: state.get(),
+        path: "link.area.width"
+      }));
+      header.render.area.width();
+      update();
+    },
     additionalEvents: [{
       event: "click",
       func: function() {
@@ -341,19 +316,14 @@ var control = (function() {
       func: function() {
         edge.destroy();
       }
-    }],
-    func: function() {
-      _setValue("header.area.width", helper.getObject({
-        object: state.get(),
-        path: "link.area.width"
-      }));
-      header.render.area.width();
-      update();
-    }
+    }]
   }, {
     element: helper.e(".control-header-area-alignment-horizontal-left"),
     path: "header.area.alignment.horizontal",
     type: "radio",
+    func: function() {
+      render();
+    },
     additionalEvents: [{
       event: "change",
       func: function() {
@@ -362,14 +332,14 @@ var control = (function() {
           delay: 500
         });
       }
-    }],
-    func: function() {
-      render();
-    }
+    }]
   }, {
     element: helper.e(".control-header-area-alignment-horizontal-center"),
     path: "header.area.alignment.horizontal",
     type: "radio",
+    func: function() {
+      render();
+    },
     additionalEvents: [{
       event: "change",
       func: function() {
@@ -378,14 +348,14 @@ var control = (function() {
           delay: 500
         });
       }
-    }],
-    func: function() {
-      render();
-    }
+    }]
   }, {
     element: helper.e(".control-header-area-alignment-horizontal-right"),
     path: "header.area.alignment.horizontal",
     type: "radio",
+    func: function() {
+      render();
+    },
     additionalEvents: [{
       event: "change",
       func: function() {
@@ -394,10 +364,7 @@ var control = (function() {
           delay: 500
         });
       }
-    }],
-    func: function() {
-      render();
-    }
+    }]
   }, {
     element: helper.e(".control-header-item-alignment-horizontal-left"),
     path: "header.item.alignment.horizontal",
@@ -466,6 +433,9 @@ var control = (function() {
     path: "header.greeting.size",
     type: "range",
     valueMod: ["float"],
+    func: function() {
+      header.render.greeting.size();
+    },
     additionalEvents: [{
       event: "input",
       func: function() {
@@ -504,13 +474,15 @@ var control = (function() {
       func: function() {
         edge.destroy();
       }
-    }],
-    func: function() {
-      header.render.greeting.size();
-    }
+    }]
   }, {
     element: helper.e(".control-header-greeting-size-default"),
     type: "button",
+    func: function() {
+      _setValue("header.greeting.size", 1);
+      header.render.greeting.size();
+      update();
+    },
     additionalEvents: [{
       event: "click",
       func: function() {
@@ -519,12 +491,7 @@ var control = (function() {
           delay: 500
         });
       }
-    }],
-    func: function() {
-      _setValue("header.greeting.size", 1);
-      header.render.greeting.size();
-      update();
-    }
+    }]
   }, {
     element: helper.e(".control-header-transitional-show"),
     path: "header.transitional.show",
@@ -556,6 +523,9 @@ var control = (function() {
     path: "header.transitional.size",
     type: "range",
     valueMod: ["float"],
+    func: function() {
+      header.render.transitional.size();
+    },
     additionalEvents: [{
       event: "input",
       func: function() {
@@ -594,13 +564,15 @@ var control = (function() {
       func: function() {
         edge.destroy();
       }
-    }],
-    func: function() {
-      header.render.transitional.size();
-    }
+    }]
   }, {
     element: helper.e(".control-header-transitional-size-default"),
     type: "button",
+    func: function() {
+      _setValue("header.transitional.size", 1);
+      header.render.transitional.size();
+      update();
+    },
     additionalEvents: [{
       event: "click",
       func: function() {
@@ -609,12 +581,7 @@ var control = (function() {
           delay: 500
         });
       }
-    }],
-    func: function() {
-      _setValue("header.transitional.size", 1);
-      header.render.transitional.size();
-      update();
-    }
+    }]
   }, {
     element: helper.e(".control-header-clock-hours-show"),
     path: "header.clock.hours.show",
@@ -770,6 +737,9 @@ var control = (function() {
     path: "header.clock.size",
     type: "range",
     valueMod: ["float"],
+    func: function() {
+      header.render.clock.size();
+    },
     additionalEvents: [{
       event: "input",
       func: function() {
@@ -808,13 +778,15 @@ var control = (function() {
       func: function() {
         edge.destroy();
       }
-    }],
-    func: function() {
-      header.render.clock.size();
-    }
+    }]
   }, {
     element: helper.e(".control-header-clock-size-default"),
     type: "button",
+    func: function() {
+      _setValue("header.clock.size", 1);
+      header.render.clock.size();
+      update();
+    },
     additionalEvents: [{
       event: "click",
       func: function() {
@@ -823,12 +795,7 @@ var control = (function() {
           delay: 500
         });
       }
-    }],
-    func: function() {
-      _setValue("header.clock.size", 1);
-      header.render.clock.size();
-      update();
-    }
+    }]
   }, {
     element: helper.e(".control-header-date-day-show"),
     path: "header.date.day.show",
@@ -1122,6 +1089,9 @@ var control = (function() {
     path: "header.date.size",
     type: "range",
     valueMod: ["float"],
+    func: function() {
+      header.render.date.size();
+    },
     additionalEvents: [{
       event: "input",
       func: function() {
@@ -1160,13 +1130,15 @@ var control = (function() {
       func: function() {
         edge.destroy();
       }
-    }],
-    func: function() {
-      header.render.date.size();
-    }
+    }]
   }, {
     element: helper.e(".control-header-date-size-default"),
     type: "button",
+    func: function() {
+      _setValue("header.date.size", 1);
+      header.render.date.size();
+      update();
+    },
     additionalEvents: [{
       event: "click",
       func: function() {
@@ -1175,12 +1147,7 @@ var control = (function() {
           delay: 500
         });
       }
-    }],
-    func: function() {
-      _setValue("header.date.size", 1);
-      header.render.date.size();
-      update();
-    }
+    }]
   }, {
     element: helper.e(".control-header-search-show"),
     path: "header.search.show",
@@ -1194,6 +1161,11 @@ var control = (function() {
     element: helper.e(".control-header-search-style-auto"),
     path: "header.search.style",
     type: "radio",
+    func: function() {
+      render();
+      dependents();
+      header.render.search.width();
+    },
     additionalEvents: [{
       event: "change",
       func: function() {
@@ -1202,16 +1174,16 @@ var control = (function() {
           delay: 500
         });
       }
-    }],
-    func: function() {
-      render();
-      dependents();
-      header.render.search.width();
-    }
+    }]
   }, {
     element: helper.e(".control-header-search-style-custom"),
     path: "header.search.style",
     type: "radio",
+    func: function() {
+      render();
+      dependents();
+      header.render.search.width();
+    },
     additionalEvents: [{
       event: "change",
       func: function() {
@@ -1220,16 +1192,14 @@ var control = (function() {
           delay: 500
         });
       }
-    }],
-    func: function() {
-      render();
-      dependents();
-      header.render.search.width();
-    }
+    }]
   }, {
     element: helper.e(".control-header-search-width"),
     path: "header.search.width",
     type: "range",
+    func: function() {
+      header.render.search.width();
+    },
     additionalEvents: [{
       event: "input",
       func: function() {
@@ -1268,10 +1238,7 @@ var control = (function() {
       func: function() {
         edge.destroy();
       }
-    }],
-    func: function() {
-      header.render.search.width();
-    }
+    }]
   }, {
     element: helper.e(".control-header-search-focus"),
     path: "header.search.focus",
@@ -1356,6 +1323,9 @@ var control = (function() {
     path: "header.search.size",
     type: "range",
     valueMod: ["float"],
+    func: function() {
+      header.render.search.size();
+    },
     additionalEvents: [{
       event: "input",
       func: function() {
@@ -1394,13 +1364,15 @@ var control = (function() {
       func: function() {
         edge.destroy();
       }
-    }],
-    func: function() {
-      header.render.search.size();
-    }
+    }]
   }, {
     element: helper.e(".control-header-search-size-default"),
     type: "button",
+    func: function() {
+      _setValue("header.search.size", 1);
+      header.render.search.size();
+      update();
+    },
     additionalEvents: [{
       event: "click",
       func: function() {
@@ -1409,12 +1381,7 @@ var control = (function() {
           delay: 500
         });
       }
-    }],
-    func: function() {
-      _setValue("header.search.size", 1);
-      header.render.search.size();
-      update();
-    }
+    }]
   }, {
     element: helper.e(".control-header-button-style-box"),
     path: "header.button.style",
@@ -1450,6 +1417,9 @@ var control = (function() {
     path: "header.button.size",
     type: "range",
     valueMod: ["float"],
+    func: function() {
+      header.render.button.size();
+    },
     additionalEvents: [{
       event: "input",
       func: function() {
@@ -1488,13 +1458,15 @@ var control = (function() {
       func: function() {
         edge.destroy();
       }
-    }],
-    func: function() {
-      header.render.button.size();
-    }
+    }]
   }, {
     element: helper.e(".control-header-button-size-default"),
     type: "button",
+    func: function() {
+      _setValue("header.button.size", 1);
+      header.render.button.size();
+      update();
+    },
     additionalEvents: [{
       event: "click",
       func: function() {
@@ -1503,12 +1475,7 @@ var control = (function() {
           delay: 500
         });
       }
-    }],
-    func: function() {
-      _setValue("header.button.size", 1);
-      header.render.button.size();
-      update();
-    }
+    }]
   }, {
     element: helper.e(".control-header-shade-show"),
     path: "header.shade.show",
@@ -1569,6 +1536,9 @@ var control = (function() {
     element: helper.e(".control-link-area-width"),
     path: "link.area.width",
     type: "range",
+    func: function() {
+      link.render.area.width();
+    },
     additionalEvents: [{
       event: "input",
       func: function() {
@@ -1607,13 +1577,18 @@ var control = (function() {
       func: function() {
         edge.destroy();
       }
-    }],
-    func: function() {
-      link.render.area.width();
-    }
+    }]
   }, {
     element: helper.e(".control-link-area-width-match"),
     type: "button",
+    func: function() {
+      _setValue("link.area.width", helper.getObject({
+        object: state.get(),
+        path: "header.area.width"
+      }));
+      link.render.area.width();
+      update();
+    },
     additionalEvents: [{
       event: "click",
       func: function() {
@@ -1627,19 +1602,14 @@ var control = (function() {
       func: function() {
         edge.destroy();
       }
-    }],
-    func: function() {
-      _setValue("link.area.width", helper.getObject({
-        object: state.get(),
-        path: "header.area.width"
-      }));
-      link.render.area.width();
-      update();
-    }
+    }]
   }, {
     element: helper.e(".control-link-area-alignment-horizontal-left"),
     path: "link.area.alignment.horizontal",
     type: "radio",
+    func: function() {
+      render();
+    },
     additionalEvents: [{
       event: "change",
       func: function() {
@@ -1648,14 +1618,14 @@ var control = (function() {
           delay: 500
         });
       }
-    }],
-    func: function() {
-      render();
-    }
+    }]
   }, {
     element: helper.e(".control-link-area-alignment-horizontal-center"),
     path: "link.area.alignment.horizontal",
     type: "radio",
+    func: function() {
+      render();
+    },
     additionalEvents: [{
       event: "change",
       func: function() {
@@ -1664,14 +1634,14 @@ var control = (function() {
           delay: 500
         });
       }
-    }],
-    func: function() {
-      render();
-    }
+    }]
   }, {
     element: helper.e(".control-link-area-alignment-horizontal-right"),
     path: "link.area.alignment.horizontal",
     type: "radio",
+    func: function() {
+      render();
+    },
     additionalEvents: [{
       event: "change",
       func: function() {
@@ -1680,15 +1650,15 @@ var control = (function() {
           delay: 500
         });
       }
-    }],
-    func: function() {
-      render();
-    }
+    }]
   }, {
     element: helper.e(".control-link-item-size"),
     path: "link.item.size",
     type: "range",
     valueMod: ["float"],
+    func: function() {
+      link.render.item.size();
+    },
     additionalEvents: [{
       event: "input",
       func: function() {
@@ -1727,13 +1697,15 @@ var control = (function() {
       func: function() {
         edge.destroy();
       }
-    }],
-    func: function() {
-      link.render.item.size();
-    }
+    }]
   }, {
     element: helper.e(".control-link-item-size-default"),
     type: "button",
+    func: function() {
+      _setValue("link.item.size", 1);
+      link.render.item.size();
+      update();
+    },
     additionalEvents: [{
       event: "click",
       func: function() {
@@ -1742,12 +1714,7 @@ var control = (function() {
           delay: 500
         });
       }
-    }],
-    func: function() {
-      _setValue("link.item.size", 1);
-      link.render.item.size();
-      update();
-    }
+    }]
   }, {
     element: helper.e(".control-link-show"),
     path: "link.show",
@@ -2369,14 +2336,16 @@ var control = (function() {
     };
     var _layout = function() {
       helper.removeClass(html, "is-layout-scroll-past-end");
-      helper.removeClass(html, "is-layout-alignment-horizontal-left");
-      helper.removeClass(html, "is-layout-alignment-horizontal-center");
-      helper.removeClass(html, "is-layout-alignment-horizontal-right");
-      helper.removeClass(html, "is-layout-alignment-vertical-top");
-      helper.removeClass(html, "is-layout-alignment-vertical-center");
-      helper.removeClass(html, "is-layout-alignment-vertical-bottom");
-      helper.addClass(html, "is-layout-alignment-horizontal-" + state.get().layout.alignment.horizontal);
-      helper.addClass(html, "is-layout-alignment-vertical-" + state.get().layout.alignment.vertical);
+      helper.removeClass(html, "is-layout-alignment-topleft");
+      helper.removeClass(html, "is-layout-alignment-topcenter");
+      helper.removeClass(html, "is-layout-alignment-topright");
+      helper.removeClass(html, "is-layout-alignment-centerleft");
+      helper.removeClass(html, "is-layout-alignment-centercenter");
+      helper.removeClass(html, "is-layout-alignment-centerright");
+      helper.removeClass(html, "is-layout-alignment-bottomleft");
+      helper.removeClass(html, "is-layout-alignment-bottomcenter");
+      helper.removeClass(html, "is-layout-alignment-bottomright");
+      helper.addClass(html, "is-layout-alignment-" + state.get().layout.alignment);
       if (state.get().layout.scrollPastEnd) {
         helper.addClass(html, "is-layout-scroll-past-end");
       };

@@ -167,10 +167,7 @@ var state = (function() {
       style: "block"
     },
     layout: {
-      alignment: {
-        horizontal: "center",
-        vertical: "center"
-      },
+      alignment: "centercenter",
       padding: 4,
       gutter: 2,
       width: 80,
