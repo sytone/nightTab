@@ -40,14 +40,13 @@
   --header-transitional-size: 1em;
   /* link */
   --link-area-width: 100%;
-  --link-area-gutter-multiplier: 2;
   --link-item-size: 1em;
   --link-item-display-letter-size: 2em;
   --link-item-display-icon-size: 2.5em;
   --link-item-name-size: 0.9em;
   /* layout */
   --layout-line-width: 0.2em;
-  --layout-gutter: 0.5rem;
+  --layout-spacer: 0.5rem;
   --layout-width: 80%;
   --layout-padding-multiplier: 4;
   --layout-gutter-multiplier: 4;
@@ -167,16 +166,16 @@
   /* link */
   --link-item-width: 11em;
   --link-item-height: 10em;
-  --link-item-url-height: 20%;
-  --link-item-edit-height: 30%;
+  --link-item-url-height: 2em;
+  --link-item-edit-height: 3em;
 }
 
 .is-link-style-list {
   /* link */
   --link-item-width: 20em;
   --link-item-height: 4em;
-  --link-item-url-height: 30%;
-  --link-item-edit-height: 50%;
+  --link-item-url-height: 1.5em;
+  --link-item-edit-height: 2em;
 }
 
 @media (min-width: 700px) {

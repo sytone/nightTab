@@ -68,7 +68,7 @@
 }
 
 .header-area {
-  padding: calc(var(--layout-gutter) * var(--layout-padding-multiplier));
+  padding: calc(var(--layout-spacer) * var(--layout-padding-multiplier));
   position: relative;
   width: var(--header-area-width);
   pointer-events: none;
@@ -109,7 +109,7 @@
 }
 
 .header-item-grid {
-  margin: calc(-1 * calc(var(--layout-gutter) * calc(var(--layout-gutter-multiplier) / 2)));
+  margin: calc(-1 * calc(var(--layout-spacer) * calc(var(--layout-gutter-multiplier) / 2)));
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -129,7 +129,7 @@
 }
 
 .header-item {
-  margin: calc(var(--layout-gutter) * calc(var(--layout-gutter-multiplier) / 2));
+  margin: calc(var(--layout-spacer) * calc(var(--layout-gutter-multiplier) / 2));
   display: flex;
   flex-wrap: nowrap;
   justify-content: flex-start;

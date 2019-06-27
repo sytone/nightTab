@@ -1,3 +1,11 @@
+.magic {
+  --grid-unit-x: 2;
+  --grid-unit-y: 2;
+  grid-column-end: span var(--grid-unit-x);
+  grid-row-end: span var(--grid-unit-y);
+  height: calc(calc(var(--link-item-height) * var(--grid-unit-y)) + calc(calc(var(--layout-spacer) * var(--layout-gutter-multiplier)) * calc(var(--grid-unit-y) - 1)));
+}
+
 .link {
   display: none;
   position: relative;
@@ -22,36 +30,39 @@
 }
 
 .link-area {
-  padding-left: calc(var(--layout-gutter) * var(--layout-padding-multiplier));
-  padding-right: calc(var(--layout-gutter) * var(--layout-padding-multiplier));
+  padding-left: calc(var(--layout-spacer) * var(--layout-padding-multiplier));
+  padding-right: calc(var(--layout-spacer) * var(--layout-padding-multiplier));
   font-size: calc(var(--link-item-size) * 1);
   position: relative;
   width: var(--link-area-width);
   display: grid;
   grid-auto-rows: 1fr;
-  grid-gap: calc(var(--layout-gutter) * var(--layout-gutter-multiplier));
+  grid-gap: calc(var(--layout-spacer) * var(--layout-gutter-multiplier));
   grid-template-columns: repeat(auto-fill, minmax(var(--link-item-width), 1fr));
+  grid-auto-flow: dense;
 }
 
 .is-layout-order-headerLink .link-area {
-  padding-bottom: calc(var(--layout-gutter) * var(--layout-padding-multiplier));
+  padding-bottom: calc(var(--layout-spacer) * var(--layout-padding-multiplier));
 }
 
 .is-layout-order-headerLink.is-header-border-bottom .link-area,
 .is-layout-order-headerLink.is-header-shade-style-always .link-area {
-  padding-top: calc(var(--layout-gutter) * var(--layout-padding-multiplier));
+  padding-top: calc(var(--layout-spacer) * var(--layout-padding-multiplier));
 }
 
 .is-layout-order-linkHeader .link-area {
-  padding-top: calc(var(--layout-gutter) * var(--layout-padding-multiplier));
+  padding-top: calc(var(--layout-spacer) * var(--layout-padding-multiplier));
 }
 
 .is-layout-order-linkHeader.is-header-border-top .link-area,
 .is-layout-order-linkHeader.is-header-shade-style-always .link-area {
-  padding-bottom: calc(var(--layout-gutter) * var(--layout-padding-multiplier));
+  padding-bottom: calc(var(--layout-spacer) * var(--layout-padding-multiplier));
 }
 
 .link-item {
+  --grid-unit-x: 1;
+  --grid-unit-y: 1;
   font-size: 1em;
   position: relative;
   height: var(--link-item-height);
@@ -59,6 +70,11 @@
   transform: scale(1);
   transition: transform var(--layout-transition-speed-fast) ease-in-out;
   z-index: 1;
+  grid-column-end: span var(--grid-unit-x);
+  grid-row-end: span var(--grid-unit-y);
+  height: calc(calc(var(--link-item-height) * var(--grid-unit-y)) + calc(calc(var(--layout-spacer) * var(--layout-gutter-multiplier)) * calc(var(--grid-unit-y) - 1)));
+}
+
 }
 
 .link-item:focus-within,
